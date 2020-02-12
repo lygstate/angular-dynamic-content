@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { DynamicContentOutletModule } from './dynamic-content-outlet/dynamic-content-outlet.module';
+import { DynamicSingleModule } from './dynamic-single/dynamic-single.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -10,7 +10,7 @@ import { DynamicContentOutletModule } from './dynamic-content-outlet/dynamic-con
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    DynamicContentOutletModule
+    DynamicSingleModule
   ],
   bootstrap: [AppComponent]
 })
