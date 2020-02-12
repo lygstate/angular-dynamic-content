@@ -7,7 +7,6 @@ import {
   Type
 } from '@angular/core';
 import { DynamicContentOutletErrorComponent } from './dynamic-content-outlet-error.component';
-import { DynamicContentOutletRegistry } from './dynamic-content-outlet.registry';
 
 type ModuleWithDynamicComponents = Type<any> & {
   dynamicComponentsMap: {};
@@ -21,17 +20,10 @@ export class DynamicContentOutletService {
     private injector: Injector
   ) {}
 
-  async GetComponent(componentName: string): Promise<ComponentRef<any>> {
-    const modulePath = this.getModulePathForComponent(componentName);
-
-    if (!modulePath) {
-      return this.getDynamicContentErrorComponent(
-        `Unable to derive modulePath from component: ${componentName} in dynamic-content.registry.ts`
-      );
-    }
-
+  async GetComponent(componentName: string, modulePath: string, moduleName: string): Promise<ComponentRef<any>> {
+    const moduleFullPath =  `${modulePath}#${moduleName}`
     try {
-      const moduleFactory = await this.moduleLoader.load(modulePath);
+      const moduleFactory = await this.moduleLoader.load(moduleFullPath);
       const moduleReference = moduleFactory.create(this.injector);
       const componentResolver = moduleReference.componentFactoryResolver;
 
@@ -45,25 +37,12 @@ export class DynamicContentOutletService {
     } catch (error) {
       console.error(error.message);
       return this.getDynamicContentErrorComponent(
-        `Unable to load module ${modulePath}.
+        `Unable to load module ${moduleFullPath}.
                 Looked up using component: ${componentName}. Error Details: ${
           error.message
         }`
       );
     }
-  }
-
-  private getModulePathForComponent(componentName: string) {
-    const registryItem = DynamicContentOutletRegistry.find(
-      i => i.componentName === componentName
-    );
-
-    if (registryItem && registryItem.modulePath) {
-      // imported modules must be in the format 'path#moduleName'
-      return `${registryItem.modulePath}#${registryItem.moduleName}`;
-    }
-
-    return null;
   }
 
   private getDynamicContentErrorComponent(errorMessage: string) {

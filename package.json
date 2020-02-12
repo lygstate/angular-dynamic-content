@@ -20,7 +20,11 @@
     "@angular/platform-browser": "~8.2.0",
     "@angular/platform-browser-dynamic": "~8.2.0",
     "@angular/router": "~8.2.0",
+    "@types/react-jsonschema-form": "^1.7.0",
     "core-js": "^3.6.4",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-jsonschema-form": "^1.8.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

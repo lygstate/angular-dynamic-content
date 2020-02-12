@@ -20,6 +20,8 @@ export class DynamicContentOutletComponent implements OnDestroy, OnChanges {
   container: ViewContainerRef;
 
   @Input() componentName: string;
+  @Input() modulePath: string;
+  @Input() moduleName: string;
 
   private component: ComponentRef<{}>;
 
@@ -35,9 +37,10 @@ export class DynamicContentOutletComponent implements OnDestroy, OnChanges {
 
   private async renderComponent() {
     this.destroyComponent();
-
     this.component = await this.dynamicContentService.GetComponent(
-      this.componentName
+      this.componentName,
+      this.modulePath,
+      this.moduleName
     );
     this.container.insert(this.component.hostView);
   }

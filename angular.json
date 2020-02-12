@@ -22,7 +22,6 @@
             "styles": ["src/styles.css"],
             "scripts": [],
             "lazyModules": [
-              "src/app/dynamic-multiple/dynamic-multiple.module",
               "src/app/dynamic-single/dynamic-single.module"
             ]
           },

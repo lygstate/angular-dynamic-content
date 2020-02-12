@@ -6,13 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  components = [
-    'DynamicSingleOneComponent',
-    'DynamicMultipleOneComponent',
-    'DynamicMultipleTwoComponent'
-  ];
-
-  selectedComponent = '';
-
+  componentName: string = 'DynamicSingleOneComponent';
+  modulePath: string = 'src/app/dynamic-single/dynamic-single.module';
+  moduleName: string = 'DynamicSingleModule';
   renderComponent() {}
 }

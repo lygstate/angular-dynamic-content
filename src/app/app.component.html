@@ -1,11 +1,7 @@
-<app-dynamic-content-outlet
-  *ngIf="selectedComponent"
-  [componentName]="selectedComponent"
-></app-dynamic-content-outlet>
+The component render are:
 
-Choose a component to render:
-<select [(ngModel)]="selectedComponent">
-  <option *ngFor="let component of components" [ngValue]="component">{{
-    component
-  }}</option>
-</select>
+<app-dynamic-content-outlet
+  [componentName]="componentName"
+  [modulePath]="modulePath"
+  [moduleName]="moduleName"
+></app-dynamic-content-outlet>
